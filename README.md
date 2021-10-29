@@ -2,6 +2,10 @@
 It is parser for moemisto.ua site.
 
 It takes data from the site and put them to posgreSQL DB.
+2 improvements used for speedup process:
+1) Eevery INSERT to PostgreSQL takes about 0.5sec. To avoid such time lose I put all data to temporary files first, then COPY data from file to the PostgreSQL tables.
+2) The site responds in 0.5 ~ 1.2 sec. So I use threading for wait and prosess site responce in paralel way.
+Processing time before those modification was 1h, after is 70 sec.
 
 - **parser-file.py** is main module
 - **helper.py** procedures for work with database
